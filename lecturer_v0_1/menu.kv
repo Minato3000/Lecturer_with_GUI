@@ -1,0 +1,27 @@
+<MyLayout>:
+    id: my_widget
+    BoxLayout:
+
+        orientation: "vertical"
+        size: root.width, root.height
+
+        padding: 50
+        spacing: 20
+
+        Label:
+            id: file_label
+            text: "Select a file"
+            font_color: "ff3333"
+
+
+        TextInput:
+            id: file_input
+            text: "Select a file"
+            font_color: "ff3333"
+            size_hint: (1, .5)
+
+
+        FileChooserIconView:
+            id: filechooser
+            on_selection: my_widget.selected(filechooser.selection)
+

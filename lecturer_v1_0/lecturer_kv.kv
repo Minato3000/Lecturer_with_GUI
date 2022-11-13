@@ -1,0 +1,41 @@
+#:import utils kivy.utils
+
+<LecturerLayout>:
+    id: lecturer_layout
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex('#395144')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+
+        orientation: "vertical"
+        size: root.width, root.height
+
+        padding: 20
+
+
+        Label:
+            id: filename_label
+            text: "Hello World"
+            text_size: None, None
+
+            size_hint_y: None
+            size_hint_x: None
+            height: 100
+            width: 500
+
+            color: utils.get_color_from_hex('#AA8B56')
+            bold: True
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex('#4E6C50')
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+        FileChooserIconView:
+            id: filechooser
+            on_selection: lecturer_layout.selected(filechooser.selection)

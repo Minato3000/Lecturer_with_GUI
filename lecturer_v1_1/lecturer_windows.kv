@@ -1,0 +1,34 @@
+<FilesWindow>:
+    id: files_widget
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        FileChooserIconView:
+            id: filechooser
+            on_selection: files_widget.selected(filechooser.selection)
+
+        Button:
+            text: "Next"
+            font_size: 32
+            on_release:
+                app.root.current = "content"
+                root.manager.transition.direction = "left"
+
+<ContentWindow>:
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            id: file_label
+            text: "Select Files"
+            font_size: 32
+
+        Button:
+            text: "Back"
+            font_size: 32
+            on_release:
+                app.root.current = "files"
+                root.manager.transition.direction = "right"

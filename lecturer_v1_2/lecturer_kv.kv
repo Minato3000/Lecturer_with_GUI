@@ -1,0 +1,36 @@
+#:import Factory kivy.factory.Factory
+
+<MyPopup@Popup>
+    auto_dismiss: False
+    size_hint: 0.8, 0.8
+
+    title: "This is a popup box"
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            id: popup_label
+            text: "Select a file"
+            font_size: 32
+
+        Button:
+            text: "Close"
+            font_size: 24
+            on_release: root.dismiss()
+
+<LecturerLayout>
+    id: lecturer_layout
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        FileChooserIconView:
+            id: filechooser
+            on_selection: lecturer_layout.selected(filechooser.selection)
+
+        Button:
+            text: "Popup"
+            font_size: 32
+            on_release: Factory.MyPopup().open()
