@@ -1,0 +1,148 @@
+<MyLayout>:
+    id: my_widget
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        GridLayout:
+
+            cols: 2
+            spacing: 10
+
+            Button:
+                text: 'Audio Player'
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'audio'
+
+            Button:
+                text: 'Settings'
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'settings'
+
+
+        BoxLayout:
+            orientation: "vertical"
+            size: root.width, 500
+            padding: 30
+
+            FileChooserIconView:
+            id: filechooser
+            on_selection: my_widget.selected(filechooser.selection)
+
+<PlayAudio>:
+    id: playaudio
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Button:
+            text: 'Back'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'upload'
+
+        Label:
+            id: file_label3
+            text: ""
+            font_color: "ff3333"
+
+        FileChooserIconView:
+            id: playsound
+            on_selection: playaudio.play_sound(playsound.selection)
+            path: "converted_audio/"
+
+
+<Settings>:
+    id: setting
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        padding: 10
+        spacing: 10
+        GridLayout:
+            cols: 2
+            Button:
+                id: voice
+                text: "language"
+                size_hint: 0.1, 0.1
+                pos: 10, 150
+                on_parent: drop_content.dismiss()
+                on_release: drop_content.open(self)
+
+
+
+            DropDown:
+                id: drop_content
+                on_select: voice.text = f'{args[1]}'
+                Button:
+                    id: btn1
+                    text: 'en-IN-Wavenet-B'
+                    size_hint: None, None
+                    height: 35
+                    on_release: drop_content.select('en-IN-Wavenet-B')
+                Button:
+                    id: btn3
+                    text: 'en-GB-Neural2-A'
+                    size_hint: None, None
+                    height: 35
+                    on_release: drop_content.select('en-GB-Neural2-A')
+                Button:
+                    id: btn4
+                    text: 'en-US-Wavenet-I'
+                    size_hint: None, None
+                    height: 35
+                    on_release: drop_content.select('en-US-Wavenet-I')
+            Button:
+                id: speed
+                text: "speed"
+                size_hint: 0.1, 0.1
+                pos: 10, 100
+                on_parent: drop_content2.dismiss()
+                on_release: drop_content2.open(self)
+
+            DropDown:
+                id: drop_content2
+                on_select: speed.text = f'{args[1]}'
+                Button:
+                    id: btn12
+                    text: '0.5'
+                    size_hint: None, None
+                    height: 35
+                    on_release: drop_content2.select('0.5')
+                Button:
+                    id: btn32
+                    text: '2.0'
+                    size_hint: None, None
+                    height: 35
+                    on_release: drop_content2.select('2.0')
+                Button:
+                    id: btn42
+                    text: '1.0'
+                    size_hint: None, None
+                    height: 35
+                    on_release: drop_content2.select('1.0')
+
+            Button:
+                text: 'audio player'
+                size_hint: 0.07, 0.07
+                pos: 300, 500
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'audio'
+            Button:
+                size_hint: 0.07, 0.07
+                pos: 200, 500
+                text: 'back'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'upload'
+
+
+            Button:
+                text: 'save'
+                size_hint: 0.05, 0.05
+                pos: 10,50
+                on_press: settin.settings()

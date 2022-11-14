@@ -13,14 +13,13 @@ def googlespeech(filename):
     print(file_info)
 
     audio = gTTS(text=file_info, slow=False)
-    audio.save("audio_files/audiofile.mp3")
+    audio.save("audiofile.mp3")
 
 
 def textspeech(text):
     audio = gTTS(text=text, slow=False)
-    audio.save("audio_files/audiofile.mp3")
+    audio.save("audiofile.mp3")
 
 
 def speak():
-    playsound("audio_files/audiofile.mp3")
-
+    playsound("audiofile.mp3")
