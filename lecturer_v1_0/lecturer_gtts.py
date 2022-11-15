@@ -1,6 +1,8 @@
 from gtts import gTTS
 from playsound import playsound
 
+import os
+
 
 def readfile(filename):
     file = open(filename, 'r')
@@ -22,5 +24,8 @@ def textspeech(text):
 
 
 def speak():
-    playsound("audio_files/audiofile.mp3")
+    entries = os.listdir('audio_files/')
+    for entry in entries:
+        playsound(entry)
+
 
